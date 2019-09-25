@@ -1,0 +1,6 @@
+server:
+  port: 6060
+rocketmq:
+  name-server: 218.26.217.98:9876
+  producer:
+    group: study_group
