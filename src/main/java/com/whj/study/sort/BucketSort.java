@@ -30,6 +30,7 @@ public class BucketSort {
         for (int i = 0; i < count; i++) {
             list.add(new ArrayList());
         }
+        // 根据数据大小先进行依次划分排序
         for (int i : arr) {
             int index = (i - min) / size;
             List bucket = list.get(index);

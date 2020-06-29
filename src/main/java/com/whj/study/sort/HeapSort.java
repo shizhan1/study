@@ -8,6 +8,9 @@ import java.util.Arrays;
  * @author whj
  * @ClassName HeapSort.java
  * @Description 堆排法
+ *              每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆；或者每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆。
+ *              大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]
+ *              小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
  * @createTime 2019年09月03日 11:29:00
  */
 public class HeapSort {
@@ -35,7 +38,7 @@ public class HeapSort {
 
     /**
      * 构建最大堆，最终arr[0]为最大值
-     *
+     * 将数组看作一个无序的完全二叉树，a[0]为堆顶，a[1],a[2]分别为下一级节点，以此类推
      * @param arr
      * @param len
      * @return void
@@ -43,7 +46,9 @@ public class HeapSort {
      * @date 2019/9/3
      */
     private static void buildMaxHeap(int[] arr, int len) {
-        for (int i = len / 2; i >= 0; i--) {
+        // 从最后一个叶子节点开始调整  最后一个叶子节点：len/2-1
+        // 依次检查上一个叶子节点
+        for (int i = len / 2 - 1; i >= 0; i--) {
             heapify(arr, i, len);
         }
     }
@@ -70,8 +75,10 @@ public class HeapSort {
             largest = right;
         }
 
+        // 子节点大于父节点
         if (largest != i) {
             swap(arr, i, largest);
+            // 调换后，可能导致子节点的排序混乱，所以重新进行排序
             heapify(arr, largest, len);
         }
 

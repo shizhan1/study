@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <RELEASE.VERSION>2.0.4-SNAPSHOT</RELEASE.VERSION>
+        <RELEASE.VERSION>2.1.0</RELEASE.VERSION>
     </properties>
 
     <dependencies>

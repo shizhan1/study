@@ -3,6 +3,7 @@ package com.whj.study.sort;
 import com.whj.study.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
  * @author whj
  * @ClassName RadixSort.java
  * @Description 基数排序
+ *          根据首先根据个位数的数值，在走访数值时将它们分配至编号0到9的桶子中，依次读取数据
+ *          依次排十位，百位。。。
  * @createTime 2019年09月05日 10:42:00
  */
 public class RadixSort {
@@ -35,6 +38,7 @@ public class RadixSort {
         List tempList = new ArrayList();
         Integer[] newArr = new Integer[arr.length];
         System.arraycopy(arr, 0, newArr, 0, arr.length);
+        // 从个位开始排序，每次除以10
         for (int i = 1; i <= count; i++) {
             tempList.clear();
             for (int j : newArr) {
