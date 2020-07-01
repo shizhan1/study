@@ -1,6 +1,9 @@
 package com.whj.study.everyday;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @description:
  * @author: whj
@@ -26,7 +29,66 @@ public class Solution {
 //        }
 
 //        System.out.println(threeSumClosest(new int[]{-1,2,1,-4},1));
-        System.out.println(findKthLargest(new int[]{3,2,3,1,2,4,5,5,6},4));
+//        System.out.println(findKthLargest(new int[]{3,2,3,1,2,4,5,5,6},4));
+        System.out.println(findLength(new int[]{1,2,3,2,1}, new int[]{3,2,1,4,7}));
+    }
+
+    /**
+     * 给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。
+     * @param A
+     * @param B
+     * @return
+     */
+    public static int findLength(int[] A, int[] B) {
+        if (A.length == 0 || B.length == 0) {
+            return 0;
+        }
+        int[][] dp = new int[A.length][B.length];
+        int maxLength = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < B.length; j++) {
+                boolean same = A[i] == B[j];
+                if (!same) {
+                    dp[i][j] = 0;
+                    continue;
+                }
+                if (i== 0 || j == 0) {
+                    dp[i][j] = 1 ;
+                } else {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                }
+                maxLength = dp[i][j] > maxLength ? dp[i][j] : maxLength;
+            }
+        }
+        return maxLength;
+    }
+    public static int findLength0(int[] A, int[] B) {
+        int maxLength = 0;
+        for (int i = 0; i < A.length; i++) {
+            int numA = A[i];
+            for (int j = 0; j < B.length; j++) {
+                int numB = B[j];
+                if (numA != numB) {
+                    continue;
+                }
+                int index = 1;
+                while (true) {
+                    if (i+index >= A.length || j+index >= B.length) {
+                        break;
+                    }
+                    int numANext = A[i+index];
+                    int numBNext = B[j+index];
+                    if (numANext!=numBNext) {
+                        break;
+                    }
+                    index++;
+                }
+                maxLength = index > maxLength ? index : maxLength;
+
+            }
+        }
+        return maxLength;
     }
 
     /**
