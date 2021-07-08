@@ -1,6 +1,27 @@
 server:
   port: 6060
-rocketmq:
-  name-server: 218.26.217.98:9876
-  producer:
-    group: study_group
+#rocketmq:
+#  name-server: 218.26.217.98:9876
+#  producer:
+#    group: study_group
+elasticjob:
+  regCenter:
+    serverLists: 127.0.0.1:2181
+    namespace: elasticjob-lite-springboot
+  jobs:
+    simpleJob:
+      elasticJobClass: com.whj.study.elasticjob.MySimpleJob
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+    dataflowJob:
+      elasticJobClass: com.whj.study.elasticjob.MyDataflowJob
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+    scriptJob:
+      elasticJobType: SCRIPT
+      cron: 0/10 * * * * ?
+      shardingTotalCount: 3
+      props:
+        script.command.line: "echo SCRIPT Job: "
